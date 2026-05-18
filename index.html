@@ -1,44 +1,45 @@
 <!doctype html>
 <html lang="es" data-theme="light">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/svg+xml" href="/vercel.svg" />
-        <title>MaldoProfe | Clases de Informática</title>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        />
-        <link rel="stylesheet" href="./styles.css" />
-    </head>
-    <body>
-        <header>
-            <div class="header-inner">
-                <div class="logo">
-                    <i class="fa-solid fa-computer"></i>
-                    <span>Taller de Informática</span>
-                </div>
-                <div class="header-right">
-                    <div class="year-tabs" id="yearTabs"></div>
-                    <button
-                        class="theme-toggle"
-                        id="themeToggle"
-                        title="Cambiar tema"
-                        aria-label="Cambiar tema claro/oscuro"
-                    >
-                        <i class="fa-solid fa-moon" id="themeIcon"></i>
-                    </button>
-                </div>
-            </div>
-        </header>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/img/vercel.svg" />
+		<title>MaldoProfe | Clases de Informática</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+		/>
+		<link rel="stylesheet" href="./styles.css" />
+	</head>
+	<body>
+		<header>
+			<div class="header-inner">
+				<div class="logo">
+					<i class="fa-solid fa-computer"></i>
+					<span>Taller de Informática</span>
+				</div>
+				<div class="header-right">
+					<div class="year-tabs" id="yearTabs"></div>
+					<button
+						class="theme-toggle"
+						id="themeToggle"
+						title="Cambiar tema"
+						aria-label="Cambiar tema claro/oscuro"
+					>
+						<i class="fa-solid fa-moon" id="themeIcon"></i>
+					</button>
+				</div>
+			</div>
+		</header>
 
-        <main id="main">
-            <select
-                class="mobile-year-select"
-                id="mobileYearSelect"
-                aria-label="Seleccionar año lectivo"
-            ></select>
-        </main>
-        <script src="./script.js"></script>
-    </body>
+		<main id="main">
+			<div id="heading"></div>
+			<select
+				class="mobile-year-select"
+				id="mobileYearSelect"
+				aria-label="Seleccionar año lectivo"
+			></select>
+		</main>
+		<script src="./script.js"></script>
+	</body>
 </html>
