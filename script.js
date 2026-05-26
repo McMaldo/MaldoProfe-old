@@ -1,5 +1,5 @@
 const DATA_URL =
-	"https://raw.githubusercontent.com/McMaldo/MaldoProfe/refs/heads/main/src/links.json";
+	"https://raw.githubusercontent.com/McMaldo/MaldoProfe/refs/heads/main/src/data/links.json";
 
 async function init() {
 	const res = await fetch(DATA_URL);
@@ -237,7 +237,7 @@ async function init() {
 		saved === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
 
 	function getHeroImgNumber(total) {
-		let pool = JSON.parse(sessionStorage.getItem('heroPool') || 'null');
+		let pool = JSON.parse(sessionStorage.getItem("heroPool") || "null");
 
 		if (!pool || pool.length === 0) {
 			pool = Array.from({ length: total }, (_, i) => i);
@@ -249,7 +249,7 @@ async function init() {
 		}
 
 		const next = pool.shift();
-		sessionStorage.setItem('heroPool', JSON.stringify(pool));
+		sessionStorage.setItem("heroPool", JSON.stringify(pool));
 		return next;
 	}
 
@@ -258,11 +258,15 @@ async function init() {
 	const heading = document.getElementById("heading");
 	heading.innerHTML = `<img id="hero-img-dark" src="/img/hero-dark-${heroImgNumber}.gif" alt="MaldoProfe"><img id="hero-img-light" src="/img/hero-light-${heroImgNumber}.gif" alt="MaldoProfe"><div id="hero-get-random-img"><i class="fa-solid fa-dice"></i></div>`;
 
-	document.getElementById("hero-get-random-img").addEventListener("click", () => {
-		const newHeroImgNumber = getHeroImgNumber(8);
-		document.getElementById("hero-img-dark").src = `/img/hero-dark-${newHeroImgNumber}.gif`;
-		document.getElementById("hero-img-light").src = `/img/hero-light-${newHeroImgNumber}.gif`;
-	});
+	document
+		.getElementById("hero-get-random-img")
+		.addEventListener("click", () => {
+			const newHeroImgNumber = getHeroImgNumber(8);
+			document.getElementById("hero-img-dark").src =
+				`/img/hero-dark-${newHeroImgNumber}.gif`;
+			document.getElementById("hero-img-light").src =
+				`/img/hero-light-${newHeroImgNumber}.gif`;
+		});
 
 	themeToggle.addEventListener("click", () => {
 		const current = html.getAttribute("data-theme");
