@@ -53,10 +53,6 @@ body {
 	background: var(--color-crust);
 	color: var(--color-text);
 	min-height: 100vh;
-	transition:
-		background 0.2s,
-		color 0.2s,
-		border-color 0.2s;
 }
 
 header {
@@ -66,9 +62,6 @@ header {
 	position: sticky;
 	top: 0;
 	z-index: 100;
-	transition:
-		background 0.2s,
-		border-color 0.2s;
 }
 
 .header-inner {
@@ -102,11 +95,13 @@ header {
 }
 
 .year-tabs {
+	height: 2.5rem;
 	display: flex;
 	gap: 10px;
 }
 
 .year-tab {
+	height: 100%;
 	background: none;
 	border: 1px solid var(--color-surface-0);
 	color: var(--color-subtext-0);
@@ -114,7 +109,6 @@ header {
 	cursor: pointer;
 	font-size: 0.85rem;
 	font-weight: 500;
-	transition: all 0.15s;
 }
 
 .year-tab:hover {
@@ -140,7 +134,6 @@ header {
 	align-items: center;
 	justify-content: center;
 	font-size: 1rem;
-	transition: all 0.2s;
 }
 #hero-get-random-img {
 	z-index: 1;
@@ -171,11 +164,9 @@ header {
 }
 #hero-img-dark {
 	opacity: var(--hero-img-dark-opacity);
-	transition: opacity 0.2s;
 }
 #hero-img-light {
 	opacity: var(--hero-img-light-opacity);
-	transition: opacity 0.2s;
 }
 
 main {
@@ -233,7 +224,6 @@ main {
 .course-card {
 	background: var(--color-mantle);
 	border: 1px solid var(--color-base);
-	transition: background 0.2s, border-color 0.2s;
 }
 
 .course-header {
@@ -242,7 +232,6 @@ main {
 	display: flex;
 	align-items: flex-start;
 	gap: 10px;
-	transition: border-bottom 0.2s;
 }
 
 .course-icon {
@@ -255,7 +244,6 @@ main {
 	justify-content: center;
 	font-size: 1.25rem;
 	flex-shrink: 0;
-	transition: background 0.2s;
 }
 
 .course-title {
@@ -304,9 +292,6 @@ main {
 	text-decoration: none;
 	color: var(--color-subtext-1);
 	font-size: 0.875rem;
-	transition:
-		background 0.12s,
-		color 0.12s;
 }
 
 .link-item:hover {
@@ -339,7 +324,6 @@ main {
 	flex-shrink: 0;
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
-	transition: background 0.2s;
 }
 
 .type-doc {
