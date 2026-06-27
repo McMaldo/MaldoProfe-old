@@ -94,7 +94,16 @@ async function init() {
 			.trim();
 	}
 
-	function buildCourseCard(course) {
+	function isDateVisible(dateStr, year) {
+		if (!dateStr) return true; // sin fecha siempre visible
+		const [day, month] = dateStr.split("/").map(Number);
+		const linkDate = new Date(Number(year), month - 1, day);
+		const today = new Date();
+		today.setHours(0, 0, 0, 0);
+		return linkDate <= today;
+	}
+
+	function buildCourseCard(course, yearId) {
 		const card = document.createElement("div");
 		card.className = "course-card";
 
@@ -120,12 +129,41 @@ async function init() {
 
 		const list = card.querySelector(".links-list");
 
-		if (!course.links || course.links.length === 0) {
+		const visibleLinks = [];
+		let pendingLabel = null;
+
+		for (const link of course.links || []) {
+			if (!link.href) {
+				pendingLabel = link;
+				continue;
+			}
+			if (!isDateVisible(link.date, yearId)) continue;
+			if (pendingLabel) {
+				visibleLinks.push(pendingLabel);
+				pendingLabel = null;
+			}
+			visibleLinks.push(link);
+		}
+
+		// Ordenar por fecha y quedarse con los últimos 3
+		const withDate = visibleLinks.filter(l => l.href && l.date);
+		withDate.sort((a, b) => {
+			const [ad, am] = a.date.split("/").map(Number);
+			const [bd, bm] = b.date.split("/").map(Number);
+			const dateA = new Date(yearId.split("-")[0], am - 1, ad);
+			const dateB = new Date(yearId.split("-")[0], bm - 1, bd);
+			return dateB - dateA; // más reciente primero
+		});
+		const lastThree = new Set(withDate.slice(0, 3));
+
+		const finalLinks = visibleLinks.filter(l => l.href && lastThree.has(l));
+
+		if (finalLinks.length === 0) {
 			list.innerHTML = '<div class="empty-links">Sin materiales aún</div>';
 			return card;
 		}
 
-		for (const link of course.links) {
+		for (const link of finalLinks) {
 			if (!link.href) {
 				const label = document.createElement("div");
 				label.className = "link-section-label";
@@ -152,11 +190,11 @@ async function init() {
 			a.target = "_blank";
 			a.rel = "noopener noreferrer";
 			a.innerHTML = `
-				<i class="${iconClass} link-icon" aria-hidden="true"></i>
-				<span class="link-name">${cleanName}</span>
-				${dateHTML}
-				${typeBadge}
-			`;
+						<i class="${iconClass} link-icon" aria-hidden="true"></i>
+						<span class="link-name">${cleanName}</span>
+						${dateHTML}
+						${typeBadge}
+				`;
 			list.appendChild(a);
 		}
 
@@ -184,9 +222,10 @@ async function init() {
 
 		const grid = section.querySelector(".courses-grid");
 		for (const course of yearData.courses) {
-			grid.appendChild(buildCourseCard(course));
+			grid.appendChild(buildCourseCard(course, yearData.id.split("-")[0]));
 		}
 
+		console.log("section built:", section.id, section.className);
 		return section;
 	}
 
